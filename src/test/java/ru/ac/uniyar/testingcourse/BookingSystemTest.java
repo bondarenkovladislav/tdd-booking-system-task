@@ -1,11 +1,15 @@
 package ru.ac.uniyar.testingcourse;
 
+import junitparams.JUnitParamsRunner;
+import junitparams.Parameters;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@RunWith(JUnitParamsRunner.class)
 public class BookingSystemTest {
 
     private BookingSystem bookingSystem = new BookingSystem();
@@ -24,14 +28,9 @@ public class BookingSystemTest {
     }
 
     @Test
-    public void impossibleToBookIntervalEarlierThan8am() {
-        assertThat(bookingSystem.book("user", 4, 7)).isFalse();
-        assertThat(bookingSystem.getBookedHoursList()).isEmpty();
-    }
-
-    @Test
-    public void impossibleToBookIntervalLaterThan8pm() {
-        assertThat(bookingSystem.book("user", 20, 22)).isFalse();
+    @Parameters({"4, 7", "20, 22"})
+    public void impossibleToBookIntervalBeyondBoundaries(int from, int till) {
+        assertThat(bookingSystem.book("user", from, till)).isFalse();
         assertThat(bookingSystem.getBookedHoursList()).isEmpty();
     }
 }
