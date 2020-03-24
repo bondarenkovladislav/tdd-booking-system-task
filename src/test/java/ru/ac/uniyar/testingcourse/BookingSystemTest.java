@@ -23,4 +23,9 @@ public class BookingSystemTest {
         assertThat(bookedHours).containsExactly(12, 13);
     }
 
+    @Test
+    public void impossibleToBookIntervalEarlierThan8am() {
+        assertThat(bookingSystem.book("user", 4, 7)).isFalse();
+        assertThat(bookingSystem.getBookedHoursList()).isEmpty();
+    }
 }
