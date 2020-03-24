@@ -11,9 +11,10 @@ public class BookingSystem {
         return new LinkedList<>(bookedHours.keySet());
     }
 
-    public void book(String user, int from, int till) {
+    public boolean book(String user, int from, int till) {
         for (int i = from; i < till; i++) {
             bookedHours.put(i, user);
         }
+        return true;
     }
 }

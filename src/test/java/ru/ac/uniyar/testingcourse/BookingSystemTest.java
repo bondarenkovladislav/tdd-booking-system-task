@@ -18,7 +18,7 @@ public class BookingSystemTest {
 
     @Test
     public void possibleToBookOneInterval() {
-        bookingSystem.book("user", 12, 14);
+        assertThat(bookingSystem.book("user", 12, 14)).isTrue();
         List<Integer> bookedHours = bookingSystem.getBookedHoursList();
         assertThat(bookedHours).containsExactly(12, 13);
     }
