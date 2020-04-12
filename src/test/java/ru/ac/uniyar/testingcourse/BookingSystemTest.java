@@ -33,4 +33,13 @@ public class BookingSystemTest {
         assertThat(bookingSystem.book("user", from, till)).isFalse();
         assertThat(bookingSystem.getBookedHoursList()).isEmpty();
     }
+
+    @Test
+    public void cancelBooking(String user, int from, int till) {
+        assertThat(bookingSystem.book("user", 12, 14)).isTrue();
+        assertThat(bookingSystem.unBook("user", 12, 13)).isTrue();
+        List<Integer> bookedHours = bookingSystem.getBookedHoursList();
+        assertThat(bookedHours.size()).isEqualTo(1);
+        assertThat(bookedHours.get(14)).isEqualTo("user");
+    }
 }
