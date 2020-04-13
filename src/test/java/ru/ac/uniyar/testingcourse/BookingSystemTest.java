@@ -35,11 +35,11 @@ public class BookingSystemTest {
     }
 
     @Test
-    public void cancelBooking(String user, int from, int till) {
+    public void cancelBooking() {
         assertThat(bookingSystem.book("user", 12, 14)).isTrue();
         assertThat(bookingSystem.unBook("user", 12, 13)).isTrue();
         List<Integer> bookedHours = bookingSystem.getBookedHoursList();
         assertThat(bookedHours.size()).isEqualTo(1);
-        assertThat(bookedHours.get(14)).isEqualTo("user");
+        assertThat(bookedHours.get(0)).isEqualTo(13);
     }
 }

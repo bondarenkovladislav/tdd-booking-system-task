@@ -22,7 +22,7 @@ public class BookingSystem {
     public boolean unBook(String user, int from, int till) {
         if (from < 8 || till >= 20) return false;
         for (int i = from; i < till; i++) {
-            if(bookedHours.get(i) == user) {
+            if (bookedHours.get(i) == user) {
                 bookedHours.remove(i);
             }
         }
