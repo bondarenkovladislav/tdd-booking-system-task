@@ -43,6 +43,13 @@ public class BookingSystemTest {
         assertThat(bookedHours.get(0)).isEqualTo(13);
     }
 
+    @Test public void cancelBookingFullInterval() {
+        assertThat(bookingSystem.book("user", 12, 14)).isTrue();
+        assertThat(bookingSystem.unBook("user", 12, 14)).isTrue();
+        List<Integer> bookedHours = bookingSystem.getBookedHoursList();
+        assertThat(bookedHours).isEmpty();
+    }
+
     @Test
     @Parameters({"4, 7", "20, 22"})
     public void unbookBeyondInterval(int from, int till) {
