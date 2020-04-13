@@ -42,4 +42,23 @@ public class BookingSystemTest {
         assertThat(bookedHours.size()).isEqualTo(1);
         assertThat(bookedHours.get(0)).isEqualTo(13);
     }
+
+    @Test
+    @Parameters({"4, 7", "20, 22"})
+    public void unbookBeyondInterval(int from, int till) {
+        bookingSystem.book("user", 8, 12);
+        int startListSize = bookingSystem.getBookedHoursList().size();
+        assertThat(bookingSystem.unBook("user", from, till)).isFalse();
+        int endListSize = bookingSystem.getBookedHoursList().size();
+        assertThat(startListSize).isEqualTo(endListSize);
+    }
+
+    @Test
+    public void unbookDifferentUser() {
+        bookingSystem.book("user", 8, 12);
+        int startListSize = bookingSystem.getBookedHoursList().size();
+        assertThat(bookingSystem.unBook("user1", 8, 12)).isFalse();
+        int endListSize = bookingSystem.getBookedHoursList().size();
+        assertThat(startListSize).isEqualTo(endListSize);
+    }
 }

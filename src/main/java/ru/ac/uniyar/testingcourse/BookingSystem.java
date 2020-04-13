@@ -24,6 +24,8 @@ public class BookingSystem {
         for (int i = from; i < till; i++) {
             if (bookedHours.get(i) == user) {
                 bookedHours.remove(i);
+            } else {
+                return false;
             }
         }
         return true;
